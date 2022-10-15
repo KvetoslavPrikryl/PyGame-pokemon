@@ -31,19 +31,20 @@ arcanine_start_live = 100
 arcanine_live = arcanine_start_live
 
 # Attack Arcanine
-attack_arcanine = pygame.image.load("Img/Minigame_img/fire-icon.png")
+attack_arcanine = pygame.image.load("Img/Attacks/fire.png")
+attack_arcanine = pygame.transform.scale(attack_arcanine, (50,50))
 attack_arcanine_rec = attack_arcanine.get_rect()
 attack_arcanine_rec.center = (width - 160, height - 60)
 
 #--------------------------------------------------------------------------------------------------#
 # Hero Img
-hero_img = pygame.image.load("Img/Hero_img.png")
+hero_img = pygame.image.load("Img/Pikachu.png")
 hero_img = pygame.transform.scale(hero_img, (90, 90))
 hero_img_rect = hero_img.get_rect()
 hero_img_rect.center = (width // 2, 700)
 
-minigame_hero = pygame.image.load("Img/Hero_img.png")
-minigame_hero = pygame.transform.scale(minigame_hero, (150, 150))
+minigame_hero = pygame.image.load("Img/Pikachu.png")
+minigame_hero = pygame.transform.scale(minigame_hero, (90, 90))
 minigame_hero_rec = minigame_hero.get_rect()
 minigame_hero_rec.center = (150, height // 2)
 
@@ -52,12 +53,13 @@ hero_start_live = 100
 hero_live = hero_start_live
 
 # Atack Hero
-attack_hero = pygame.image.load("Img/Minigame_img/lightning-icon.png")
+attack_hero = pygame.image.load("Img/Attacks/lightn.png")
+attack_hero = pygame.transform.scale(attack_hero, (50,50))
 attack_hero_rec = attack_hero.get_rect()
 attack_hero_rec.center = (160, height - 60)
 #---------------------------------------------------------------------------------------------------#
 # Arena
-arena_img = pygame.image.load("Img/Minigame_img/Arena.png")
+arena_img = pygame.image.load("Img/Arena.png")
 arena_img = pygame.transform.scale(arena_img, (width, height))
 arena_img_rec = arena_img.get_rect()
 arena_img_rec.topleft = (0,0)
@@ -89,17 +91,20 @@ while lets_continue:
     keys = pygame.key.get_pressed()
     if (keys[pygame.K_UP] or keys[pygame.K_w]) and hero_img_rect.top > 50:
         hero_img_rect.y -= distance
-    elif (keys[pygame.K_DOWN] or keys[pygame.K_s]) and hero_img_rect.bottom < height:
+    if (keys[pygame.K_DOWN] or keys[pygame.K_s]) and hero_img_rect.bottom < height:
         hero_img_rect.y += distance
-    elif (keys[pygame.K_LEFT] or keys[pygame.K_a]) and hero_img_rect.left > 0:
+    if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and hero_img_rect.left > 0:
         hero_img_rect.x -= distance
-    elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and hero_img_rect.right < width:
+    if (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and hero_img_rect.right < width:
         hero_img_rect.x += distance
 
     # Collision
     if hero_img_rect.colliderect(arcanine_img_rect):
         arcanine_img_rect.centerx = random.randint(0 + 36, width - 36)
         arcanine_img_rect.centery = random.randint(50 + 36, height - 36)
+
+        arcanine_live = arcanine_start_live
+        hero_live = hero_start_live
 
         minigame = True
 
@@ -115,14 +120,12 @@ while lets_continue:
                     click_y = event.pos[1]
 
                     if attack_hero_rec.collidepoint(click_x, click_y):
-                        arcanine_live -= random.choice([5, 20])
+                        arcanine_live -= random.randint(5,20)
                         if arcanine_live <= 0:
                             minigame = False
-                            arcanine_live = arcanine_start_live
 
-                    hero_live -= random.choice([5, 20])
+                    hero_live -= random.randint(5,20)
                     if hero_live <= 0 :
-                        hero_live = hero_start_live
                         minigame = False
                     
                     
