@@ -12,7 +12,7 @@ class Game():
 
 
     def update(self):
-        self.collided()
+        pass
 
     def draw(self):
 
