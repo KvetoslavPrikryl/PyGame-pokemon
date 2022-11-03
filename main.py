@@ -17,11 +17,11 @@ clock = pygame.time.Clock()
 # IMG
 
 # Arcanine IMG
-arcanine_img = pygame.image.load("Img/Arcanine.png")
+arcanine_img = pygame.image.load("Img/Pokemons/Arcanine.png")
 arcanine_img_rect = arcanine_img.get_rect()
 arcanine_img_rect.center = (width // 2, height // 2)
 
-minigame_arcanine = pygame.image.load("Img/Arcanine.png")
+minigame_arcanine = pygame.image.load("Img/Pokemons/Arcanine.png")
 minigame_arcanine = pygame.transform.scale(minigame_arcanine, (120, 120))
 minigame_arcanine_rec = minigame_arcanine.get_rect()
 minigame_arcanine_rec.center = (width - 150, height // 2) 
@@ -38,12 +38,12 @@ attack_arcanine_rec.center = (width - 160, height - 60)
 
 #--------------------------------------------------------------------------------------------------#
 # Hero Img
-hero_img = pygame.image.load("Img/Pikachu.png")
+hero_img = pygame.image.load("Img/Pokemons/Pikachu.png")
 hero_img = pygame.transform.scale(hero_img, (90, 90))
 hero_img_rect = hero_img.get_rect()
 hero_img_rect.center = (width // 2, 700)
 
-minigame_hero = pygame.image.load("Img/Pikachu.png")
+minigame_hero = pygame.image.load("Img/Pokemons/Pikachu.png")
 minigame_hero = pygame.transform.scale(minigame_hero, (90, 90))
 minigame_hero_rec = minigame_hero.get_rect()
 minigame_hero_rec.center = (150, height // 2)

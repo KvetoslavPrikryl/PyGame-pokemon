@@ -32,7 +32,7 @@ class Game():
 
 class Playr(pygame.sprite.Sprite):
 
-    def __init__(self, minigame_x, minigame_y, name = ("playr1")):
+    def __init__(self, x, y, name = ("playr1")):
         super().__init__()
         self.image = pygame.image.load("Img/Pikachu.png")
         self.image = pygame.transform.scale(self.image, (70,70))
@@ -40,10 +40,11 @@ class Playr(pygame.sprite.Sprite):
         self.rect.bottom = height -20
         self.rect.left = 20
         self.speed = 3
-        self.level = 1
-        self.minigame_x = minigame_x
-        self.minigame_y = minigame_y
+        self.x = x
+        self.y = y
         self.name = name
+        self.healt = 100
+        self.dmg = random.randint(5,20)
 
     def update(self):
         keys = pygame.key.get_pressed()
@@ -73,8 +74,11 @@ class Pokemon(pygame.sprite.Sprite):
         self.type = type
         self.x = x
         self.y = y
+        self.healt = 100
+        self.dmg = random.randint(5,20)
 
-    def attacks(self, x, y):
+
+    def attacks(self, x, y,):
 
         self.attack = pygame.image.load("Img/Attacks/attack.png")
         self.attack_rec = self.attack.get_rect()
@@ -86,18 +90,28 @@ class Pokemon(pygame.sprite.Sprite):
             fire_attack = pygame.image.load("Img/Attacks/fire.png")
             fire_attack_rec = fire_attack.get_rect()
             fire_attack_rec.topleft = attack_position
+            attack_type = fire_attack
+            attack_type_rec = fire_attack_rec
         elif self.type == 1:
             wather_attack = pygame.image.load("Img/Attacks/wather.png")
             wather_attack_rec = wather_attack.get_rect()
             wather_attack_rec.topleft = attack_position
+            attack_type = wather_attack
+            attack_type_rec = wather_attack_rec
         elif self.type == 2:
             flight_attack = pygame.image.load("Img/Attacks/flight.png")
             flight_attack_rec = flight_attack.get_rect()
             flight_attack_rec.topleft = attack_position
+            attack_type = flight_attack
+            attack_type_rec = flight_attack_rec
         elif self.type == 3:
             lightn_attack = pygame.image.load("Img/Attacks/lightn.png")
             lightn_attack_rec = lightn_attack.get_rect()
             lightn_attack_rec.topleft = attack_position
+            attack_type = lightn_attack
+            attack_type_rec = lightn_attack_rec
+
+        return x, y, self.attack, self.attack_rec, attack_type, attack_type_rec
 
     def update(self):
         self.attacks(self.x, self.y)
